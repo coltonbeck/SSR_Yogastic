@@ -30,7 +30,11 @@ CREATE TABLE `ssr_classinstance` (
   `LocationId` int(11) NOT NULL,
   `ClassDate` date DEFAULT NULL,
   `ActiveFlag` char(1) DEFAULT NULL,
-  PRIMARY KEY (`ClassInstanceId`)
+  PRIMARY KEY (`ClassInstanceId`),
+  KEY `fk_classinstance_classtypeid_idx` (`ClassTypeId`),
+  KEY `fk_classinstance_locationid_idx` (`LocationId`),
+  CONSTRAINT `fk_classinstance_classtypeid` FOREIGN KEY (`ClassTypeId`) REFERENCES `ssr_classtype` (`ClassTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_classinstance_locationid` FOREIGN KEY (`LocationId`) REFERENCES `ssr_location` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -147,7 +151,11 @@ CREATE TABLE `ssr_instructorpay` (
   `ClassInstanceId` int(11) NOT NULL,
   `AmountPaid` decimal(11,2) DEFAULT NULL,
   `ActiveFlag` char(1) DEFAULT NULL,
-  PRIMARY KEY (`InstructorPayId`)
+  PRIMARY KEY (`InstructorPayId`),
+  KEY `fk_instructorpay_instructorid_idx` (`InstructorId`),
+  KEY `fk_instructorpay_classinstanceid_idx` (`ClassInstanceId`),
+  CONSTRAINT `fk_instructorpay_classinstanceid` FOREIGN KEY (`ClassInstanceId`) REFERENCES `ssr_classinstance` (`ClassInstanceId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_instructorpay_instructorid` FOREIGN KEY (`InstructorId`) REFERENCES `ssr_instructor` (`InstructorId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -175,8 +183,10 @@ CREATE TABLE `ssr_itempurchase` (
   `AmountPaid` decimal(11,2) DEFAULT NULL,
   `PurchaseDate` date DEFAULT NULL,
   `ActiveFlag` char(1) DEFAULT NULL,
-  PRIMARY KEY (`ItemPurchaseId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ItemPurchaseId`),
+  KEY `fk_itempurchase_customerid_idx` (`CustomerId`),
+  CONSTRAINT `fk_itempurchase_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +237,11 @@ CREATE TABLE `ssr_packagepurchase` (
   `PurchaseDate` date DEFAULT NULL,
   `AmountPaid` decimal(11,2) DEFAULT NULL,
   `ActiveFlag` char(1) DEFAULT NULL,
-  PRIMARY KEY (`PackagePurchaseId`)
+  PRIMARY KEY (`PackagePurchaseId`),
+  KEY `fk_packagepurchase_customerid_idx` (`CustomerId`),
+  KEY `fk_packagepurchase_packagetypeid_idx` (`PackageTypeId`),
+  CONSTRAINT `fk_packagepurchase_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_packagepurchase_packagetypeid` FOREIGN KEY (`PackageTypeId`) REFERENCES `ssr_packagetype` (`PackageTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -280,7 +294,13 @@ CREATE TABLE `ssr_visit` (
   `ClassInstanceId` int(11) NOT NULL,
   `PackagePurchaseId` int(11) NOT NULL,
   `ActiveFlag` char(1) DEFAULT NULL,
-  PRIMARY KEY (`VisitId`)
+  PRIMARY KEY (`VisitId`),
+  KEY `fk_visit_customerid_idx` (`CustomerId`),
+  KEY `fk_visit_classinstanceid_idx` (`ClassInstanceId`),
+  KEY `fk_visit_packagepurchaseid_idx` (`PackagePurchaseId`),
+  CONSTRAINT `fk_visit_classinstanceid` FOREIGN KEY (`ClassInstanceId`) REFERENCES `ssr_classinstance` (`ClassInstanceId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_visit_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_visit_packagepurchaseid` FOREIGN KEY (`PackagePurchaseId`) REFERENCES `ssr_packagepurchase` (`PackagePurchaseId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -616,4 +636,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-29 14:33:38
+-- Dump completed on 2014-11-29 18:28:03
