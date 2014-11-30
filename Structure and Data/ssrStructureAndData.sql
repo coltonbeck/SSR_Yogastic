@@ -242,7 +242,7 @@ CREATE TABLE `ssr_packagepurchase` (
   KEY `fk_packagepurchase_packagetypeid_idx` (`PackageTypeId`),
   CONSTRAINT `fk_packagepurchase_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_packagepurchase_packagetypeid` FOREIGN KEY (`PackageTypeId`) REFERENCES `ssr_packagetype` (`PackageTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `ssr_visit` (
   CONSTRAINT `fk_visit_classinstanceid` FOREIGN KEY (`ClassInstanceId`) REFERENCES `ssr_classinstance` (`ClassInstanceId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_visit_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_visit_packagepurchaseid` FOREIGN KEY (`PackagePurchaseId`) REFERENCES `ssr_packagepurchase` (`PackagePurchaseId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,6 +327,7 @@ SET character_set_client = utf8;
   `ClassDate` tinyint NOT NULL,
   `ClassType` tinyint NOT NULL,
   `Instructor` tinyint NOT NULL,
+  `InstructorPay` tinyint NOT NULL,
   `Location` tinyint NOT NULL,
   `ClassAttendance` tinyint NOT NULL
 ) ENGINE=MyISAM */;
@@ -347,7 +348,9 @@ SET character_set_client = utf8;
   `TotalPaid` tinyint NOT NULL,
   `ClassesAttended` tinyint NOT NULL,
   `ClassesRemaining` tinyint NOT NULL,
-  `LastClassAttended` tinyint NOT NULL
+  `LastClassAttended` tinyint NOT NULL,
+  `ReferralsEarned` tinyint NOT NULL,
+  `ReferralClassesRemaining` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
@@ -443,6 +446,34 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary table structure for view `v_ssr_supportcustomerrecordreferralsearned`
+--
+
+DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_ssr_supportcustomerrecordreferralsearned` (
+  `CustomerId` tinyint NOT NULL,
+  `ReferralsEarned` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `v_ssr_supportcustomerrecordreferralsused`
+--
+
+DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsused`;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsused`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_ssr_supportcustomerrecordreferralsused` (
+  `CustomerId` tinyint NOT NULL,
+  `ReferralsUsed` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary table structure for view `v_ssr_supportpackagepurchasedetails`
 --
 
@@ -470,7 +501,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_ssr_retrieveclassrecord` AS (select `ci`.`ClassInstanceId` AS `ClassInstanceId`,`ci`.`ClassDate` AS `ClassDate`,`ct`.`ClassTypeDesc` AS `ClassType`,`i`.`FirstName` AS `Instructor`,`l`.`OfficeLocation` AS `Location`,ifnull(`scr`.`ClassAttendance`,0) AS `ClassAttendance` from (((((`ssr_classinstance` `ci` join `ssr_classtype` `ct` on((`ci`.`ClassTypeId` = `ct`.`ClassTypeId`))) join `ssr_location` `l` on((`ci`.`LocationId` = `l`.`LocationId`))) join `ssr_instructorpay` `ip` on((`ip`.`ClassInstanceId` = `ci`.`ClassInstanceId`))) join `ssr_instructor` `i` on((`i`.`InstructorId` = `ip`.`InstructorId`))) left join `v_ssr_supportclassrecord` `scr` on((`ci`.`ClassInstanceId` = `scr`.`ClassInstanceId`))) order by `ci`.`ClassInstanceId` desc) */;
+/*!50001 VIEW `v_ssr_retrieveclassrecord` AS (select `ci`.`ClassInstanceId` AS `ClassInstanceId`,`ci`.`ClassDate` AS `ClassDate`,`ct`.`ClassTypeDesc` AS `ClassType`,`i`.`FirstName` AS `Instructor`,`ip`.`AmountPaid` AS `InstructorPay`,`l`.`OfficeLocation` AS `Location`,ifnull(`scr`.`ClassAttendance`,0) AS `ClassAttendance` from (((((`ssr_classinstance` `ci` join `ssr_classtype` `ct` on((`ci`.`ClassTypeId` = `ct`.`ClassTypeId`))) join `ssr_location` `l` on((`ci`.`LocationId` = `l`.`LocationId`))) join `ssr_instructorpay` `ip` on((`ip`.`ClassInstanceId` = `ci`.`ClassInstanceId`))) join `ssr_instructor` `i` on((`i`.`InstructorId` = `ip`.`InstructorId`))) left join `v_ssr_supportclassrecord` `scr` on((`ci`.`ClassInstanceId` = `scr`.`ClassInstanceId`))) order by `ci`.`ClassInstanceId` desc) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -489,7 +520,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_ssr_retrievecustomerrecord` AS (select `c`.`CustomerId` AS `CustomerId`,`c`.`FirstName` AS `FirstName`,`c`.`LastName` AS `LastName`,ifnull(`a`.`TotalPaid`,'0.00') AS `TotalPaid`,ifnull(`b`.`ClassesAttended`,0) AS `ClassesAttended`,ifnull(`a`.`ClassesRemaining`,0) AS `ClassesRemaining`,ifnull(`d`.`LastClassAttended`,'N/A') AS `LastClassAttended` from (((`ssr_customer` `c` left join `v_ssr_supportcustomerrecordpayandclassremaining` `a` on((`c`.`CustomerId` = `a`.`customerid`))) left join `v_ssr_supportcustomerrecordclassesattended` `b` on((`c`.`CustomerId` = `b`.`CustomerId`))) left join `v_ssr_retrievecustomerrecordlastclassattended` `d` on((`c`.`CustomerId` = `d`.`CustomerId`)))) */;
+/*!50001 VIEW `v_ssr_retrievecustomerrecord` AS (select `c`.`CustomerId` AS `CustomerId`,`c`.`FirstName` AS `FirstName`,`c`.`LastName` AS `LastName`,ifnull(`a`.`TotalPaid`,'0.00') AS `TotalPaid`,ifnull(`b`.`ClassesAttended`,0) AS `ClassesAttended`,ifnull(`a`.`ClassesRemaining`,0) AS `ClassesRemaining`,ifnull(`d`.`LastClassAttended`,'N/A') AS `LastClassAttended`,ifnull(`re`.`ReferralsEarned`,0) AS `ReferralsEarned`,ifnull((`re`.`ReferralsEarned` - ifnull(`ru`.`ReferralsUsed`,0)),0) AS `ReferralClassesRemaining` from (((((`ssr_customer` `c` left join `v_ssr_supportcustomerrecordpayandclassremaining` `a` on((`c`.`CustomerId` = `a`.`customerid`))) left join `v_ssr_supportcustomerrecordclassesattended` `b` on((`c`.`CustomerId` = `b`.`CustomerId`))) left join `v_ssr_retrievecustomerrecordlastclassattended` `d` on((`c`.`CustomerId` = `d`.`CustomerId`))) left join `v_ssr_supportcustomerrecordreferralsearned` `re` on((`c`.`CustomerId` = `re`.`CustomerId`))) left join `v_ssr_supportcustomerrecordreferralsused` `ru` on((`c`.`CustomerId` = `ru`.`CustomerId`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -609,6 +640,44 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `v_ssr_supportcustomerrecordreferralsearned`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`*/;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_ssr_supportcustomerrecordreferralsearned` AS (select `ssr_packagepurchase`.`CustomerId` AS `CustomerId`,count(`ssr_packagepurchase`.`CustomerId`) AS `ReferralsEarned` from `ssr_packagepurchase` where (`ssr_packagepurchase`.`PackageTypeId` = 5) group by `ssr_packagepurchase`.`CustomerId`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_ssr_supportcustomerrecordreferralsused`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsused`*/;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsused`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_ssr_supportcustomerrecordreferralsused` AS (select `ssr_visit`.`CustomerId` AS `CustomerId`,count(`ssr_visit`.`CustomerId`) AS `ReferralsUsed` from `ssr_visit` where `ssr_visit`.`PackagePurchaseId` in (select `ssr_packagepurchase`.`PackagePurchaseId` from `ssr_packagepurchase` where (`ssr_packagepurchase`.`PackageTypeId` = 5)) group by `ssr_visit`.`CustomerId`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `v_ssr_supportpackagepurchasedetails`
 --
 
@@ -636,4 +705,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-29 18:28:03
+-- Dump completed on 2014-11-29 21:03:33

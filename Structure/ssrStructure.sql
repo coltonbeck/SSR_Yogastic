@@ -39,16 +39,6 @@ CREATE TABLE `ssr_classinstance` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ssr_classinstance`
---
-
-LOCK TABLES `ssr_classinstance` WRITE;
-/*!40000 ALTER TABLE `ssr_classinstance` DISABLE KEYS */;
-INSERT INTO `ssr_classinstance` VALUES (1,1,1,'2014-11-01','A'),(2,2,1,'2014-11-07','A'),(3,1,1,'2014-11-08','A'),(4,2,1,'2014-11-14','A'),(5,1,1,'2014-11-15','A'),(6,2,1,'2014-11-21','A'),(7,1,1,'2014-11-22','A');
-/*!40000 ALTER TABLE `ssr_classinstance` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ssr_classtype`
 --
 
@@ -62,16 +52,6 @@ CREATE TABLE `ssr_classtype` (
   PRIMARY KEY (`ClassTypeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_classtype`
---
-
-LOCK TABLES `ssr_classtype` WRITE;
-/*!40000 ALTER TABLE `ssr_classtype` DISABLE KEYS */;
-INSERT INTO `ssr_classtype` VALUES (1,'General','A'),(2,'Senior','A'),(3,'Prenatal','A'),(4,'Hump Day','A');
-/*!40000 ALTER TABLE `ssr_classtype` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ssr_customer`
@@ -93,16 +73,6 @@ CREATE TABLE `ssr_customer` (
   PRIMARY KEY (`CustomerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_customer`
---
-
-LOCK TABLES `ssr_customer` WRITE;
-/*!40000 ALTER TABLE `ssr_customer` DISABLE KEYS */;
-INSERT INTO `ssr_customer` VALUES (1,'Eileen','Marhefka','eileen.marhefka@verizon.com',NULL,NULL,NULL,NULL,'A'),(2,'Greg','Thompson','eileen.marhefka@verizon.com',NULL,NULL,NULL,NULL,'A'),(3,'Nitsa','Rosenzweig','rosenzweign@csr.nih.gov',NULL,NULL,NULL,NULL,'A'),(4,'Pat','Gleason','pattgleason@aol.com',NULL,NULL,NULL,NULL,'A'),(5,'Joe','Gleason','pattgleason@aol.com',NULL,NULL,NULL,NULL,'A'),(6,'Lorea','Wetten','lorea.wetten@gmail.com',NULL,NULL,NULL,NULL,'A'),(7,'Natalie',NULL,NULL,NULL,NULL,NULL,NULL,'A'),(8,'Kirby','Hoag','kirbyh22@gmail.com',NULL,NULL,NULL,NULL,'A'),(9,'Janet','Olivera','janetbjo@gmail.com',NULL,NULL,NULL,NULL,'A'),(10,'Joe','Olivera','janetbjo@gmail.com',NULL,NULL,NULL,NULL,'A'),(11,'Casey','Goldstein','cgoldstein@ufl.edu',NULL,NULL,NULL,NULL,'A'),(12,'Faraj','E','farajhf@gmail.com',NULL,NULL,NULL,NULL,'A'),(13,'Michelle','A','aten@olemiss.edu',NULL,NULL,NULL,NULL,'A'),(14,'Sarah','Bilgrami',NULL,NULL,NULL,NULL,NULL,'A'),(15,'Diane','Howard','diane.howard52@gmail.com',NULL,NULL,NULL,NULL,'A'),(16,'Lynne','Walker','jim_lynn_walker@hotmail.com',NULL,NULL,NULL,NULL,'A'),(17,'Jim','Walker','jim_lynn_walker@hotmail.com',NULL,NULL,NULL,NULL,'A'),(18,'Barbara','Matsko','barbaramatsko@gmail.com',NULL,NULL,NULL,NULL,'A'),(19,'Loraine','Mussoneli','lmmuss@hotmail.com',NULL,NULL,NULL,NULL,'A'),(20,'Doug','Anderson',NULL,NULL,NULL,NULL,NULL,'A'),(21,'Bethany','Craig','bethany.craig@redcross.org',NULL,NULL,NULL,NULL,'A'),(22,'Laura','Higgins','lhiggins@verizon.net',NULL,NULL,NULL,NULL,'A'),(23,'Patty',NULL,NULL,NULL,NULL,NULL,NULL,'A'),(24,'Vicky','Paisely','vmpaisely@cox.net',NULL,NULL,NULL,NULL,'A'),(25,'Nancy',NULL,'nancyemichel@gmail.com',NULL,NULL,NULL,NULL,'A'),(26,'Ahalya','Premkumar','premkumar4@yahoo.com',NULL,NULL,NULL,NULL,'A'),(27,'Kathy','Lake','kcluke@earthlink.net',NULL,NULL,NULL,NULL,'A'),(28,'Mary','Rogers','marogers1@fcps.com',NULL,NULL,NULL,NULL,'A'),(29,'Beth','VanWinkle','bethvanwinkle@verizon.net',NULL,NULL,NULL,NULL,'A'),(30,'Barbara','Semedo','bsemedo@yahoo.com',NULL,NULL,NULL,NULL,'A');
-/*!40000 ALTER TABLE `ssr_customer` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ssr_instructor`
@@ -129,16 +99,6 @@ CREATE TABLE `ssr_instructor` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ssr_instructor`
---
-
-LOCK TABLES `ssr_instructor` WRITE;
-/*!40000 ALTER TABLE `ssr_instructor` DISABLE KEYS */;
-INSERT INTO `ssr_instructor` VALUES (1,'Kathy','Turner',NULL,NULL,'VA',NULL,NULL,NULL,NULL,'turnerkathy@gmail.com','A');
-/*!40000 ALTER TABLE `ssr_instructor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ssr_instructorpay`
 --
 
@@ -158,16 +118,6 @@ CREATE TABLE `ssr_instructorpay` (
   CONSTRAINT `fk_instructorpay_instructorid` FOREIGN KEY (`InstructorId`) REFERENCES `ssr_instructor` (`InstructorId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_instructorpay`
---
-
-LOCK TABLES `ssr_instructorpay` WRITE;
-/*!40000 ALTER TABLE `ssr_instructorpay` DISABLE KEYS */;
-INSERT INTO `ssr_instructorpay` VALUES (1,1,1,0.00,'A'),(2,1,2,0.00,'A'),(3,1,3,0.00,'A'),(4,1,4,30.00,'A'),(5,1,5,30.00,'A'),(6,1,6,30.00,'A'),(7,1,7,30.00,'A');
-/*!40000 ALTER TABLE `ssr_instructorpay` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ssr_itempurchase`
@@ -190,15 +140,6 @@ CREATE TABLE `ssr_itempurchase` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ssr_itempurchase`
---
-
-LOCK TABLES `ssr_itempurchase` WRITE;
-/*!40000 ALTER TABLE `ssr_itempurchase` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ssr_itempurchase` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ssr_location`
 --
 
@@ -212,16 +153,6 @@ CREATE TABLE `ssr_location` (
   PRIMARY KEY (`LocationId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_location`
---
-
-LOCK TABLES `ssr_location` WRITE;
-/*!40000 ALTER TABLE `ssr_location` DISABLE KEYS */;
-INSERT INTO `ssr_location` VALUES (1,'McLean','A');
-/*!40000 ALTER TABLE `ssr_location` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ssr_packagepurchase`
@@ -242,18 +173,8 @@ CREATE TABLE `ssr_packagepurchase` (
   KEY `fk_packagepurchase_packagetypeid_idx` (`PackageTypeId`),
   CONSTRAINT `fk_packagepurchase_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_packagepurchase_packagetypeid` FOREIGN KEY (`PackageTypeId`) REFERENCES `ssr_packagetype` (`PackageTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_packagepurchase`
---
-
-LOCK TABLES `ssr_packagepurchase` WRITE;
-/*!40000 ALTER TABLE `ssr_packagepurchase` DISABLE KEYS */;
-INSERT INTO `ssr_packagepurchase` VALUES (1,1,6,'2014-11-08',55.00,'A'),(2,2,6,'2014-11-08',55.00,'A'),(3,9,1,'2014-11-08',15.00,'A'),(4,12,6,'2014-11-11',55.00,'A'),(5,17,6,'2014-11-14',55.00,'A'),(6,16,6,'2014-11-14',55.00,'A'),(7,19,6,'2014-11-14',55.00,'A'),(8,9,6,'2014-11-15',55.00,'A'),(9,24,2,'2014-11-21',70.00,'A'),(10,4,1,'2014-11-22',15.00,'A'),(11,21,1,'2014-11-22',15.00,'A'),(12,18,3,'2014-11-22',130.00,'A'),(13,1,4,'2014-11-01',0.00,'A'),(14,2,4,'2014-11-01',0.00,'A'),(15,3,4,'2014-11-01',0.00,'A'),(16,4,4,'2014-11-01',0.00,'A'),(17,5,4,'2014-11-01',0.00,'A'),(18,6,4,'2014-11-01',0.00,'A'),(19,7,4,'2014-11-01',0.00,'A'),(20,8,4,'2014-11-01',0.00,'A'),(21,9,4,'2014-11-01',0.00,'A'),(22,10,4,'2014-11-01',0.00,'A'),(23,11,4,'2014-11-01',0.00,'A'),(24,12,4,'2014-11-01',0.00,'A'),(25,13,4,'2014-11-01',0.00,'A'),(26,14,4,'2014-11-01',0.00,'A'),(27,15,4,'2014-11-07',0.00,'A'),(28,16,4,'2014-11-07',0.00,'A'),(29,17,4,'2014-11-07',0.00,'A'),(30,18,4,'2014-11-07',0.00,'A'),(31,19,4,'2014-11-07',0.00,'A'),(32,20,4,'2014-11-08',0.00,'A'),(33,21,4,'2014-11-08',0.00,'A'),(34,22,4,'2014-11-08',0.00,'A'),(35,23,4,'2014-11-14',0.00,'A'),(36,24,4,'2014-11-14',0.00,'A'),(37,25,4,'2014-11-21',0.00,'A'),(38,26,4,'2014-11-22',0.00,'A'),(39,27,4,'2014-11-22',0.00,'A'),(40,28,4,'2014-11-22',0.00,'A'),(41,29,4,'2014-11-22',0.00,'A'),(42,30,4,'2014-11-22',0.00,'A'),(43,4,1,'2014-11-15',20.00,'A');
-/*!40000 ALTER TABLE `ssr_packagepurchase` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ssr_packagetype`
@@ -270,16 +191,6 @@ CREATE TABLE `ssr_packagetype` (
   PRIMARY KEY (`PackageTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_packagetype`
---
-
-LOCK TABLES `ssr_packagetype` WRITE;
-/*!40000 ALTER TABLE `ssr_packagetype` DISABLE KEYS */;
-INSERT INTO `ssr_packagetype` VALUES (1,'Single',1,'A'),(2,'Five Class Package',5,'A'),(3,'Ten Class Package',10,'A'),(4,'First Class',1,'A'),(5,'Referral',1,'A'),(6,'Four Class Package',4,'A');
-/*!40000 ALTER TABLE `ssr_packagetype` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ssr_visit`
@@ -301,18 +212,8 @@ CREATE TABLE `ssr_visit` (
   CONSTRAINT `fk_visit_classinstanceid` FOREIGN KEY (`ClassInstanceId`) REFERENCES `ssr_classinstance` (`ClassInstanceId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_visit_customerid` FOREIGN KEY (`CustomerId`) REFERENCES `ssr_customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_visit_packagepurchaseid` FOREIGN KEY (`PackagePurchaseId`) REFERENCES `ssr_packagepurchase` (`PackagePurchaseId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ssr_visit`
---
-
-LOCK TABLES `ssr_visit` WRITE;
-/*!40000 ALTER TABLE `ssr_visit` DISABLE KEYS */;
-INSERT INTO `ssr_visit` VALUES (1,1,1,13,'A'),(2,2,1,14,'A'),(3,3,1,15,'A'),(4,4,1,16,'A'),(5,5,1,17,'A'),(6,6,1,18,'A'),(7,7,1,19,'A'),(8,8,1,20,'A'),(9,9,1,21,'A'),(10,10,1,22,'A'),(11,11,1,23,'A'),(12,12,1,24,'A'),(13,13,1,25,'A'),(14,14,1,26,'A'),(15,15,2,27,'A'),(16,16,2,28,'A'),(17,17,2,29,'A'),(18,18,2,30,'A'),(19,19,2,31,'A'),(20,1,3,1,'A'),(21,2,3,2,'A'),(22,9,3,3,'A'),(23,12,3,4,'A'),(24,20,3,32,'A'),(25,21,3,33,'A'),(26,22,3,34,'A'),(27,23,4,35,'A'),(28,17,4,5,'A'),(29,16,4,6,'A'),(30,19,4,7,'A'),(31,24,4,36,'A'),(32,1,5,1,'A'),(33,2,5,2,'A'),(34,9,5,8,'A'),(35,12,5,4,'A'),(36,4,5,43,'A'),(37,17,6,5,'A'),(38,16,6,6,'A'),(39,19,6,7,'A'),(40,24,6,9,'A'),(41,25,6,37,'A'),(42,1,7,1,'A'),(43,2,7,2,'A'),(44,9,7,8,'A'),(45,12,7,4,'A'),(46,4,7,10,'A'),(47,21,7,11,'A'),(48,26,7,38,'A'),(49,18,7,12,'A'),(50,27,7,39,'A'),(51,28,7,40,'A'),(52,29,7,41,'A'),(53,30,7,42,'A');
-/*!40000 ALTER TABLE `ssr_visit` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Temporary table structure for view `v_ssr_retrieveclassrecord`
@@ -327,6 +228,7 @@ SET character_set_client = utf8;
   `ClassDate` tinyint NOT NULL,
   `ClassType` tinyint NOT NULL,
   `Instructor` tinyint NOT NULL,
+  `InstructorPay` tinyint NOT NULL,
   `Location` tinyint NOT NULL,
   `ClassAttendance` tinyint NOT NULL
 ) ENGINE=MyISAM */;
@@ -347,7 +249,9 @@ SET character_set_client = utf8;
   `TotalPaid` tinyint NOT NULL,
   `ClassesAttended` tinyint NOT NULL,
   `ClassesRemaining` tinyint NOT NULL,
-  `LastClassAttended` tinyint NOT NULL
+  `LastClassAttended` tinyint NOT NULL,
+  `ReferralsEarned` tinyint NOT NULL,
+  `ReferralClassesRemaining` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
@@ -443,6 +347,34 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary table structure for view `v_ssr_supportcustomerrecordreferralsearned`
+--
+
+DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_ssr_supportcustomerrecordreferralsearned` (
+  `CustomerId` tinyint NOT NULL,
+  `ReferralsEarned` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `v_ssr_supportcustomerrecordreferralsused`
+--
+
+DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsused`;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsused`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_ssr_supportcustomerrecordreferralsused` (
+  `CustomerId` tinyint NOT NULL,
+  `ReferralsUsed` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary table structure for view `v_ssr_supportpackagepurchasedetails`
 --
 
@@ -470,7 +402,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_ssr_retrieveclassrecord` AS (select `ci`.`ClassInstanceId` AS `ClassInstanceId`,`ci`.`ClassDate` AS `ClassDate`,`ct`.`ClassTypeDesc` AS `ClassType`,`i`.`FirstName` AS `Instructor`,`l`.`OfficeLocation` AS `Location`,ifnull(`scr`.`ClassAttendance`,0) AS `ClassAttendance` from (((((`ssr_classinstance` `ci` join `ssr_classtype` `ct` on((`ci`.`ClassTypeId` = `ct`.`ClassTypeId`))) join `ssr_location` `l` on((`ci`.`LocationId` = `l`.`LocationId`))) join `ssr_instructorpay` `ip` on((`ip`.`ClassInstanceId` = `ci`.`ClassInstanceId`))) join `ssr_instructor` `i` on((`i`.`InstructorId` = `ip`.`InstructorId`))) left join `v_ssr_supportclassrecord` `scr` on((`ci`.`ClassInstanceId` = `scr`.`ClassInstanceId`))) order by `ci`.`ClassInstanceId` desc) */;
+/*!50001 VIEW `v_ssr_retrieveclassrecord` AS (select `ci`.`ClassInstanceId` AS `ClassInstanceId`,`ci`.`ClassDate` AS `ClassDate`,`ct`.`ClassTypeDesc` AS `ClassType`,`i`.`FirstName` AS `Instructor`,`ip`.`AmountPaid` AS `InstructorPay`,`l`.`OfficeLocation` AS `Location`,ifnull(`scr`.`ClassAttendance`,0) AS `ClassAttendance` from (((((`ssr_classinstance` `ci` join `ssr_classtype` `ct` on((`ci`.`ClassTypeId` = `ct`.`ClassTypeId`))) join `ssr_location` `l` on((`ci`.`LocationId` = `l`.`LocationId`))) join `ssr_instructorpay` `ip` on((`ip`.`ClassInstanceId` = `ci`.`ClassInstanceId`))) join `ssr_instructor` `i` on((`i`.`InstructorId` = `ip`.`InstructorId`))) left join `v_ssr_supportclassrecord` `scr` on((`ci`.`ClassInstanceId` = `scr`.`ClassInstanceId`))) order by `ci`.`ClassInstanceId` desc) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -489,7 +421,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_ssr_retrievecustomerrecord` AS (select `c`.`CustomerId` AS `CustomerId`,`c`.`FirstName` AS `FirstName`,`c`.`LastName` AS `LastName`,ifnull(`a`.`TotalPaid`,'0.00') AS `TotalPaid`,ifnull(`b`.`ClassesAttended`,0) AS `ClassesAttended`,ifnull(`a`.`ClassesRemaining`,0) AS `ClassesRemaining`,ifnull(`d`.`LastClassAttended`,'N/A') AS `LastClassAttended` from (((`ssr_customer` `c` left join `v_ssr_supportcustomerrecordpayandclassremaining` `a` on((`c`.`CustomerId` = `a`.`customerid`))) left join `v_ssr_supportcustomerrecordclassesattended` `b` on((`c`.`CustomerId` = `b`.`CustomerId`))) left join `v_ssr_retrievecustomerrecordlastclassattended` `d` on((`c`.`CustomerId` = `d`.`CustomerId`)))) */;
+/*!50001 VIEW `v_ssr_retrievecustomerrecord` AS (select `c`.`CustomerId` AS `CustomerId`,`c`.`FirstName` AS `FirstName`,`c`.`LastName` AS `LastName`,ifnull(`a`.`TotalPaid`,'0.00') AS `TotalPaid`,ifnull(`b`.`ClassesAttended`,0) AS `ClassesAttended`,ifnull(`a`.`ClassesRemaining`,0) AS `ClassesRemaining`,ifnull(`d`.`LastClassAttended`,'N/A') AS `LastClassAttended`,ifnull(`re`.`ReferralsEarned`,0) AS `ReferralsEarned`,ifnull((`re`.`ReferralsEarned` - ifnull(`ru`.`ReferralsUsed`,0)),0) AS `ReferralClassesRemaining` from (((((`ssr_customer` `c` left join `v_ssr_supportcustomerrecordpayandclassremaining` `a` on((`c`.`CustomerId` = `a`.`customerid`))) left join `v_ssr_supportcustomerrecordclassesattended` `b` on((`c`.`CustomerId` = `b`.`CustomerId`))) left join `v_ssr_retrievecustomerrecordlastclassattended` `d` on((`c`.`CustomerId` = `d`.`CustomerId`))) left join `v_ssr_supportcustomerrecordreferralsearned` `re` on((`c`.`CustomerId` = `re`.`CustomerId`))) left join `v_ssr_supportcustomerrecordreferralsused` `ru` on((`c`.`CustomerId` = `ru`.`CustomerId`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -609,6 +541,44 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `v_ssr_supportcustomerrecordreferralsearned`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`*/;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsearned`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_ssr_supportcustomerrecordreferralsearned` AS (select `ssr_packagepurchase`.`CustomerId` AS `CustomerId`,count(`ssr_packagepurchase`.`CustomerId`) AS `ReferralsEarned` from `ssr_packagepurchase` where (`ssr_packagepurchase`.`PackageTypeId` = 5) group by `ssr_packagepurchase`.`CustomerId`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_ssr_supportcustomerrecordreferralsused`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_ssr_supportcustomerrecordreferralsused`*/;
+/*!50001 DROP VIEW IF EXISTS `v_ssr_supportcustomerrecordreferralsused`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_ssr_supportcustomerrecordreferralsused` AS (select `ssr_visit`.`CustomerId` AS `CustomerId`,count(`ssr_visit`.`CustomerId`) AS `ReferralsUsed` from `ssr_visit` where `ssr_visit`.`PackagePurchaseId` in (select `ssr_packagepurchase`.`PackagePurchaseId` from `ssr_packagepurchase` where (`ssr_packagepurchase`.`PackageTypeId` = 5)) group by `ssr_visit`.`CustomerId`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `v_ssr_supportpackagepurchasedetails`
 --
 
@@ -636,4 +606,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-29 18:27:38
+-- Dump completed on 2014-11-29 21:03:54
